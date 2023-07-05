@@ -1,13 +1,11 @@
-const deg = 6
-
 function myWatch(watch, hour, minutes, title) {
+  const deg = 6
   const hr = document.querySelector(`#hr${watch}`)
   const mn = document.querySelector(`#mn${watch}`)
   const sc = document.querySelector(`#sc${watch}`)
   let city = document.querySelector(`#city${watch}`)
 
   city.innerHTML = title
-  console.log(new Date().getMinutes())
 
   setInterval(() => {
     let day = new Date()
