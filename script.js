@@ -7,29 +7,36 @@ function myWatch(watch, hour, minutes, title) {
   let city = document.querySelector(`#city${watch}`)
 
   city.innerHTML = title
+  console.log(new Date().getMinutes())
 
   setInterval(() => {
     let day = new Date()
+
     let hh = day.getHours()
     let mm = day.getMinutes() * deg + minutes
     let ss = day.getSeconds() * deg
 
-    if (mm >= 360) {
-      mm = 0
-    }
-
     hr.style.transform = `rotateZ(${(hh + hour) * 30 + mm / 12}deg)`
     mn.style.transform = `rotateZ(${mm}deg)`
     sc.style.transform = `rotateZ(${ss}deg)`
-    city.innerHTML =
-      title +
-      ` ${
-        hh + Math.floor(hour) < 10
-          ? '0' + (hh + Math.floor(hour))
-          : hh + Math.floor(hour)
-      }:${mm / deg < 10 ? '0' + mm / deg : mm / deg}:${
-        ss / deg < 10 ? '0' + ss / deg : ss / deg
-      }`
+
+    const digitHour = ` ${
+      hh + Math.floor(hour) < 10
+        ? '0' + (hh + Math.floor(hour))
+        : hh + Math.floor(hour)
+    }`
+
+    let digitMinute
+
+    if (mm / deg > 60) {
+      digitMinute = `:${mm / deg - 60}`
+    } else {
+      digitMinute = `:${mm / deg < 10 ? '0' + mm / deg : mm / deg}`
+    }
+
+    const digitSecond = `:${ss / deg < 10 ? '0' + ss / deg : ss / deg}`
+
+    city.innerHTML = title + digitHour + digitMinute + digitSecond
   })
 }
 
