@@ -28,7 +28,7 @@ function myWatch(watch, hour, minutes, title) {
 
     if (mm / deg > 60) {
       digitMinute = `:${
-        mm / deg - 60 < 10 ? '0' + mm / deg - 60 : mm / deg - 60
+        mm / deg - 60 < 10 ? '0' + (mm / deg - 60) : mm / deg - 60
       }`
     } else {
       digitMinute = `:${mm / deg < 10 ? '0' + mm / deg : mm / deg}`
