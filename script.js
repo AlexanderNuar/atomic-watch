@@ -11,11 +11,15 @@ function myWatch(watch, hour, minutes, title) {
   setInterval(() => {
     let day = new Date()
     let hh = day.getHours()
-    let mm = day.getMinutes() * deg
+    let mm = day.getMinutes() * deg + minutes
     let ss = day.getSeconds() * deg
 
+    if (mm >= 360) {
+      mm = 0
+    }
+
     hr.style.transform = `rotateZ(${(hh + hour) * 30 + mm / 12}deg)`
-    mn.style.transform = `rotateZ(${mm + minutes}deg)`
+    mn.style.transform = `rotateZ(${mm}deg)`
     sc.style.transform = `rotateZ(${ss}deg)`
     city.innerHTML =
       title +
@@ -23,11 +27,9 @@ function myWatch(watch, hour, minutes, title) {
         hh + Math.floor(hour) < 10
           ? '0' + (hh + Math.floor(hour))
           : hh + Math.floor(hour)
-      }:${
-        (mm + minutes) / deg < 10
-          ? '0' + (mm + minutes) / deg
-          : (mm + minutes) / deg
-      }:${ss / deg < 10 ? '0' + ss / deg : ss / deg}`
+      }:${mm / deg < 10 ? '0' + mm / deg : mm / deg}:${
+        ss / deg < 10 ? '0' + ss / deg : ss / deg
+      }`
   })
 }
 
