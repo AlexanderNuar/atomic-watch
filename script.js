@@ -18,7 +18,7 @@ function myWatch(watch, hour, minutes, title) {
     mn.style.transform = `rotateZ(${mm}deg)`
     sc.style.transform = `rotateZ(${ss}deg)`
 
-    const digitHour = ` ${
+    let digitHour = ` ${
       hh + Math.floor(hour) < 10
         ? '0' + (hh + Math.floor(hour))
         : hh + Math.floor(hour)
@@ -29,6 +29,11 @@ function myWatch(watch, hour, minutes, title) {
     if (mm / deg > 60) {
       digitMinute = `:${
         mm / deg - 60 < 10 ? '0' + (mm / deg - 60) : mm / deg - 60
+      }`
+      digitHour = ` ${
+        hh + Math.floor(hour) < 10
+          ? '0' + (hh + Math.floor(hour) + 1)
+          : hh + Math.floor(hour) + 1
       }`
     } else {
       digitMinute = `:${mm / deg < 10 ? '0' + mm / deg : mm / deg}`
@@ -45,4 +50,4 @@ myWatch(2, 0, 0, 'Киев')
 myWatch(3, -1, 0, 'Берлин')
 myWatch(4, 6, 0, 'Токио')
 myWatch(5, -7, 0, 'Вашингтон')
-myWatch(6, 0.5, 180, 'Иран')
+myWatch(6, 0, 180, 'Иран')
