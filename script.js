@@ -5,6 +5,8 @@ function myWatch(watch, hour, minutes, title) {
   const sc = document.querySelector(`#sc${watch}`)
   let city = document.querySelector(`#city${watch}`)
 
+  const ampm = document.querySelector(`#ampm${watch}`)
+
   city.innerHTML = title
 
   setInterval(() => {
@@ -42,6 +44,12 @@ function myWatch(watch, hour, minutes, title) {
     const digitSecond = `:${ss / deg < 10 ? '0' + ss / deg : ss / deg}`
 
     city.innerHTML = title + digitHour + digitMinute + digitSecond
+
+    if (digitHour >= 12) {
+      ampm.innerText = 'PM'
+    } else {
+      ampm.innerText = 'AM'
+    }
   })
 }
 
